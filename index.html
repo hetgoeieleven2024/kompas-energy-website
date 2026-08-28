@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kompas Energy — Voor wie zijn energie niet wil verspillen</title>
+<meta name="description" content="Kompas Energy helpt particulieren en professionals de juiste energieleverancier kiezen. Onafhankelijk advies, alle leveranciers vergeleken.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFF1E7;
+    --ink:#152014;
+    --forest:#1F3D2A;
+    --brass:#AD8A4E;
+    --leaf:#6FB92C;
+    --ink-soft:#54604F;
+    --line:rgba(21,32,20,0.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;}
+  .serif{font-family:'Newsreader',serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  .bearing{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.08em;
+    color:var(--brass);display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  }
+  .bearing::before{content:"";width:24px;height:1px;background:var(--brass);}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:2px;padding:15px 30px;font-weight:500;font-size:0.92rem;border:1px solid transparent;cursor:pointer;transition:all 0.2s ease;font-family:'IBM Plex Sans',sans-serif;}
+  .btn-primary{background:var(--forest);color:var(--paper);border-color:var(--forest);}
+  .btn-primary:hover{background:var(--ink);}
+  .btn-ghost{background:transparent;color:var(--forest);border-color:var(--forest);}
+  .btn-ghost:hover{background:rgba(31,61,42,0.06);}
+
+  header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--line);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1180px;margin:0 auto;}
+  .logo-mark{display:flex;align-items:center;gap:12px;}
+  .logo-mark img{height:38px;}
+  .logo-mark span{font-family:'Newsreader',serif;font-size:1.15rem;font-weight:500;letter-spacing:0.01em;}
+  .nav-links{display:flex;gap:36px;list-style:none;font-size:0.88rem;color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--forest);}
+
+  /* HERO */
+  .hero{position:relative;padding:70px 0 100px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;align-items:center;}
+  .hero h1{font-family:'Newsreader',serif;font-size:clamp(2.6rem,5vw,4.3rem);line-height:1.02;font-weight:500;margin-bottom:26px;}
+  .hero h1 em{font-style:italic;color:var(--forest);}
+  .hero p.lead{font-size:1.1rem;color:var(--ink-soft);max-width:46ch;margin-bottom:36px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+
+  .compass-wrap{display:flex;justify-content:center;align-items:center;position:relative;}
+  .compass-ring{width:100%;max-width:400px;}
+  .needle{transform-origin:200px 200px;animation:settle 3.5s cubic-bezier(.16,1.2,.3,1) forwards;}
+  @keyframes settle{
+    0%{transform:rotate(160deg);}
+    60%{transform:rotate(-8deg);}
+    80%{transform:rotate(4deg);}
+    100%{transform:rotate(0deg);}
+  }
+  @media (prefers-reduced-motion: reduce){.needle{animation:none;}}
+
+  /* SECTIONS */
+  section{padding:100px 0;}
+  .section-head{max-width:620px;margin-bottom:56px;}
+  .section-head h2{font-family:'Newsreader',serif;font-size:clamp(2rem,3.4vw,2.7rem);font-weight:500;line-height:1.08;}
+  .section-head p{color:var(--ink-soft);margin-top:16px;font-size:1.02rem;max-width:56ch;}
+
+  .about{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  .about p{color:var(--ink-soft);margin-bottom:16px;font-size:1.02rem;}
+  .about .quote{
+    font-family:'Newsreader',serif;font-style:italic;font-size:1.3rem;line-height:1.4;color:var(--forest);
+    border-left:2px solid var(--brass);padding-left:24px;margin-top:12px;
+  }
+  .coord-list{display:flex;flex-direction:column;gap:0;margin-top:8px;}
+  .coord-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:0.92rem;}
+  .coord-row .mono{color:var(--brass);}
+
+  /* DIENSTEN — bearings instead of numbers */
+  .diensten{background:var(--forest);color:var(--paper);}
+  .diensten .section-head p{color:#C8D6C0;}
+  .diensten .bearing{color:var(--leaf);}
+  .diensten .bearing::before{background:var(--leaf);}
+  .bearing-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(239,241,231,0.16);}
+  .bearing-card{background:var(--forest);padding:40px 34px;}
+  .bearing-card .deg{font-family:'IBM Plex Mono',monospace;font-size:0.85rem;color:var(--leaf);margin-bottom:20px;letter-spacing:0.04em;}
+  .bearing-card h3{font-family:'Newsreader',serif;font-size:1.5rem;font-weight:500;margin-bottom:14px;}
+  .bearing-card p{font-size:0.95rem;color:#C8D6C0;}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:60px;}
+  .contact-info h3{font-family:'Newsreader',serif;font-size:1.6rem;font-weight:500;margin-bottom:16px;}
+  .contact-info p{color:var(--ink-soft);margin-bottom:24px;}
+  .info-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+  .info-list li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:0.92rem;}
+  .info-list .mono{color:var(--brass);}
+
+  form{background:#fff;border:1px solid var(--line);padding:38px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:0.78rem;font-weight:500;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;}
+  input,select,textarea{
+    font-family:'IBM Plex Sans',sans-serif;border:none;border-bottom:1.5px solid var(--line);border-radius:0;padding:10px 2px;
+    font-size:0.98rem;background:transparent;color:var(--ink);width:100%;
+  }
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--forest);}
+  textarea{resize:vertical;min-height:90px;}
+  .radio-row{display:flex;gap:28px;margin-top:8px;}
+  .radio-row label{display:flex;align-items:center;gap:8px;font-weight:400;font-size:0.95rem;color:var(--ink);text-transform:none;letter-spacing:0;}
+  form .btn-primary{width:100%;justify-content:center;margin-top:14px;}
+
+  footer{background:var(--ink);color:#9CAE97;padding:36px 0;font-size:0.85rem;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  @media (max-width: 900px){
+    .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
+    .bearing-row{grid-template-columns:1fr;}
+    .form-row,.radio-row{grid-template-columns:1fr;flex-direction:column;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo-mark">
+      <img src="images/logo-kompas-energy.png" alt="Kompas Energy">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#over-ons">Wie zijn we</a></li>
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#contact" style="padding:10px 22px;">Vraag advies aan</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="bearing">TRUE NORTH — 000°</p>
+      <h1>Jouw richting<br>in de <em>energiemarkt.</em></h1>
+      <p class="lead">Kompas Energy vergelijkt elke leverancier, particulier of professioneel, en wijst de weg naar het contract dat écht bij jou past.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact">Vraag gratis advies aan</a>
+        <a class="btn btn-ghost" href="#diensten">Bekijk onze diensten</a>
+      </div>
+    </div>
+    <div class="compass-wrap">
+      <svg class="compass-ring" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="170" fill="none" stroke="#1F3D2A" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="200" cy="200" r="140" fill="none" stroke="#AD8A4E" stroke-width="1"/>
+        <g font-family="IBM Plex Mono" font-size="13" fill="#54604F">
+          <text x="200" y="42" text-anchor="middle">N</text>
+          <text x="358" y="205" text-anchor="middle">O</text>
+          <text x="200" y="368" text-anchor="middle">Z</text>
+          <text x="42" y="205" text-anchor="middle">W</text>
+        </g>
+        <g class="needle">
+          <polygon points="200,70 214,200 200,330 186,200" fill="#1F3D2A"/>
+          <polygon points="200,70 214,200 200,200" fill="#AD8A4E"/>
+          <polygon points="200,330 186,200 200,200" fill="#AD8A4E"/>
+          <circle cx="200" cy="200" r="10" fill="#152014"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="over-ons">
+  <div class="wrap about-grid">
+    <div>
+      <p class="bearing" style="color:var(--brass);">ONS KOMPAS</p>
+      <h2 class="serif" style="font-size:2.2rem;font-weight:500;margin-bottom:20px;">Onafhankelijk, ongeacht welke kant je op wil.</h2>
+      <p>Kompas Energy is niet gebonden aan één leverancier. We vergelijken de volledige markt en adviseren wat werkt voor jouw verbruik — niet wat het meeste oplevert voor ons.</p>
+      <p class="quote">"We wijzen de weg naar de leverancier die past bij jou — niet naar wie het meeste betaalt."</p>
+    </div>
+    <div>
+      <div class="coord-list">
+        <div class="coord-row"><span>Type klanten</span><span class="mono">Particulier &amp; professioneel</span></div>
+        <div class="coord-row"><span>Leveranciers vergeleken</span><span class="mono">Alle, marktbreed</span></div>
+        <div class="coord-row"><span>Werkgebied</span><span class="mono">Vlaanderen</span></div>
+        <div class="coord-row"><span>Advies</span><span class="mono">Vrijblijvend &amp; gratis</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="diensten" id="diensten">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="bearing">PEILING</p>
+      <h2>Drie richtingen, één kompas.</h2>
+      <p>Waar je ook vertrekt — als gezin of als bedrijf — we bepalen samen de juiste koers.</p>
+    </div>
+    <div class="bearing-row">
+      <div class="bearing-card">
+        <p class="deg">N · 000°</p>
+        <h3>Particulieren</h3>
+        <p>We vergelijken alle leveranciers op basis van jouw verbruik en vinden het contract met de beste prijs-kwaliteit voor je gezin.</p>
+      </div>
+      <div class="bearing-card">
+        <p class="deg">O · 090°</p>
+        <h3>Professionals</h3>
+        <p>Zakelijke contracten vergen een andere aanpak. We analyseren je bedrijfsverbruik en onderhandelen de beste voorwaarden.</p>
+      </div>
+      <div class="bearing-card">
+        <p class="deg">Z · 180°</p>
+        <h3>Multi-leverancier</h3>
+        <p>Aan geen enkele leverancier gebonden. Dat betekent 100% onafhankelijk advies, gebaseerd op wat werkt voor jou.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <p class="bearing" style="color:var(--brass);">AANMELDEN</p>
+      <h3>Vraag jouw gratis<br>energieadvies aan.</h3>
+      <p>Vul het formulier in — we nemen snel contact op met een voorstel op maat.</p>
+      <ul class="info-list">
+        <li><span>E-mail</span><span class="mono">info@kompasenergy.be</span></li>
+        <li><span>Regio</span><span class="mono">Oost-Vlaanderen</span></li>
+        <li><span>Actief in</span><span class="mono">Heel Vlaanderen</span></li>
+      </ul>
+    </div>
+    <form action="https://formsubmit.co/info@kompasenergy.be" method="POST">
+      <input type="hidden" name="_subject" value="Nieuwe aanvraag via energykompas.be">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" style="display:none">
+
+      <div class="form-row">
+        <div class="field"><label for="naam">Naam</label><input id="naam" name="Naam" type="text" required></div>
+        <div class="field"><label for="adres">Adres</label><input id="adres" name="Adres" type="text"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="telefoon">Telefoon</label><input id="telefoon" name="Telefoon" type="tel"></div>
+        <div class="field"><label for="email">E-mail</label><input id="email" name="E-mail" type="email" required></div>
+      </div>
+      <div class="field full" style="margin-bottom:18px;">
+        <label for="leverancier">Huidige energieleverancier</label>
+        <input id="leverancier" name="Huidige leverancier" type="text" placeholder="bv. Luminus, Engie, ...">
+      </div>
+      <div class="field full" style="margin-bottom:18px;">
+        <label>Type klant</label>
+        <div class="radio-row">
+          <label><input type="radio" name="Type klant" value="Particulier" style="width:auto;" checked> Particulier</label>
+          <label><input type="radio" name="Type klant" value="Professioneel" style="width:auto;"> Professioneel</label>
+        </div>
+      </div>
+      <div class="field full" style="margin-bottom:18px;">
+        <label for="opmerkingen">Opmerkingen (optioneel)</label>
+        <textarea id="opmerkingen" name="Opmerkingen" placeholder="Vertel ons meer over je situatie..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Verstuur aanvraag</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-row">
+    <span>© 2026 Kompas Energy</span>
+    <span class="mono" style="letter-spacing:0.05em;">VOOR WIE ZIJN ENERGIE NIET WIL VERSPILLEN</span>
+  </div>
+</footer>
+
+</body>
+</html>
